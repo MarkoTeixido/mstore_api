@@ -3,12 +3,12 @@ const cors = require('cors');
 const helmet = require('helmet');
 const swaggerJsdoc = require("swagger-jsdoc")
 const swaggerUi = require("swagger-ui-express");
-const routerApi = require('./api/routes');
-const { errorHandler, boomErrorHandler } = require('./api/middlewares/errorHandler');
-const options = require('./Swagger');
+const routerApi = require('./routes');
+const { errorHandler, boomErrorHandler } = require('./middlewares/errorHandler');
+const options = require('../Swagger');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Middleware externo de seguridad Helmet
 app.use(helmet());
@@ -28,13 +28,13 @@ app.use(cors(corsOptions));
 const specs = swaggerJsdoc(options);
 
 app.use(
-  "/api-docs",
+  "/api/api-docs",
   swaggerUi.serve,
   swaggerUi.setup(specs)
 );
 
 // Ruta de inicio de la aplicación
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   res.send('Hello, this is my API in Node.js and Express.');
 });
 
