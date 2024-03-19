@@ -56,6 +56,8 @@ const options = {
     }
   },
   apis: ["./api/routes/productsRouter.js"],
+  customCssUrl: '/node_modules/swagger-ui-dist/index.css',
+  customSiteTitle: "The Words That I Know API - Swagger"
 };
 
 module.exports = options;

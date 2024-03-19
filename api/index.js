@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const helmet = require('helmet');
 const swaggerJsdoc = require("swagger-jsdoc")
@@ -9,6 +10,9 @@ const options = require('./Swagger');
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+// Configura Express para servir archivos estáticos desde el directorio 'public'
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Middleware externo de seguridad Helmet
 app.use(helmet());
