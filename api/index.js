@@ -11,9 +11,6 @@ const options = require('./Swagger');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Configura Express para servir archivos estáticos desde el directorio 'public'
-app.use(express.static(path.join(__dirname, 'public')));
-
 // Middleware externo de seguridad Helmet
 app.use(helmet());
 
@@ -41,6 +38,12 @@ app.use(
 app.get('/api', (req, res) => {
   res.send('Hello, this is my API in Node.js and Express.');
 });
+
+// Configura Express para servir archivos estáticos desde el directorio 'public'
+app.get('/api-docs-ui/swagger-ui.css', (req, res) => {
+  res.setHeader('Content-Type', 'text/css');
+  res.sendFile(path.join(__dirname, 'public/swagger-ui.css'));
+})
 
 // Establecer las rutas de la API
 routerApi(app);
