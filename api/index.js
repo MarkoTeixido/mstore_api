@@ -1,8 +1,7 @@
 const express = require('express');
-const path = require('path');
 const cors = require('cors');
 const helmet = require('helmet');
-const swaggerJsdoc = require("swagger-jsdoc")
+const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 const routerApi = require('./routes');
 const { errorHandler, boomErrorHandler } = require('./middlewares/errorHandler');
@@ -38,12 +37,6 @@ app.use(
 app.get('/api', (req, res) => {
   res.send('Hello, this is my API in Node.js and Express.');
 });
-
-// Configura Express para servir archivos estáticos desde el directorio 'public'
-app.get('/api-docs-ui/swagger-ui.css', (req, res) => {
-  res.setHeader('Content-Type', 'text/css');
-  res.sendFile(path.join(__dirname, 'public/swagger-ui.css'));
-})
 
 // Establecer las rutas de la API
 routerApi(app);
