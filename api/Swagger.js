@@ -41,7 +41,7 @@ const options = {
       },
       responses : {
           400: {
-              description: 'Missing API key - include it in the Authorization header',
+              description: 'Bad Request',
               contents: 'application/json'
           },
           401: {
