@@ -14,5 +14,8 @@
       "src": "/api/index.js",
       "use": "@now/node"
     }
-  ]
+  ],
+  "routes": [
+     { "handle": "filesystem" }
+   ]
 }
