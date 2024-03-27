@@ -10,7 +10,7 @@ const { createProductSchema, getProductSchema, updateProductSchema } = require('
  * @swagger
  * tags:
  *   name: Products
- *   description: M!Store Fake Products Data API
+ *   description: M!Store - Products Data
  */
 
 /**
