@@ -6,5 +6,6 @@
   ],
   "builds": [
     { "src": "/api/index.js", "use": "@now/node" }
-  ]
+  ],
+  "handle": [ "filesystem" ]
 }
