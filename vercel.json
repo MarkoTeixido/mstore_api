@@ -1,11 +1,10 @@
 {
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
-    }
-  ],
   "routes": [
+    { "src": "/api/users", "dest": "/api/routes/usersRouter.js" },
+    { "src": "/api/products", "dest": "/api/routes/productsRouter.js" },
     { "src": "/api/(.*)", "dest": "/api/index.js" }
+  ],
+  "builds": [
+    { "src": "/api/index.js", "use": "@now/node" }
   ]
 }
