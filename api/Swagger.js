@@ -40,13 +40,9 @@ const options = {
           },
           user: {
             type: 'object',
-            required: ['userName', 'userUsername', 'userEmail', 'userAddress', 'userPhone'],
+            required: ['userName', 'userUsername', 'userEmail', 'userAvatar', 'userAddress', 'userPhone', 'userBirthdate'],
             properties: {
                 userName: {
-                    type: 'string',
-                    description: 'Name of the user'
-                },
-                userUsername: {
                     type: 'string',
                     description: 'Username of the user'
                 },
@@ -55,6 +51,10 @@ const options = {
                     format: 'email',
                     description: 'Email of the user'
                 },
+                userAvatar: {
+                  type: 'url',
+                  description: 'Avatar of the user'
+                },
                 userAddress: {
                   type: 'string',
                   description: 'Address of the user'
@@ -62,14 +62,19 @@ const options = {
                 userPhone: {
                   type: 'string',
                   description: 'Phone number of the user'
+                },
+                userBirthdate: {
+                  type: 'string',
+                  description: 'Birthdate of the user'
                 }
             },
             example: {
-              userName: "robertaso lolcat 443",
-              userUsername: "robertaso57",
+              userName: "robertaso57",
               userEmail: "robertaso@gmail.com",
+              userAvatar: "http://example.com/img/189",
               userAddress: "065 disney Islands",
-              userPhone: "1-757-619-999"
+              userPhone: "1-757-619-999",
+              userBirthdate: "1999-01-01",
             }
           }
       },

@@ -16,23 +16,27 @@ class UsersService {
     this.users = Array.from({ length: limit }, () => ({
       id: faker.datatype.uuid(),
       userName: faker.internet.userName(),
-      userUsername: faker.internet.userName(),
       userEmail: faker.internet.email(),
+      userAvatar: faker.image.avatar(),
       userAddress: faker.address.streetAddress(),
       userPhone: faker.phone.phoneNumber(),
+      userBirthdate: faker.date.future(),
+      UserRegisteredAt: faker.date.past(),
     }));
   };
 
   // Crear un producto
-  async create(userName, userUsername, userEmail, userAddress, userPhone) {
+  async create(userName, userEmail, userAvatar, userAddress, userPhone, userBirthdate, UserRegisteredAt ) {
 
     const newUser = {
       id: faker.datatype.uuid(),
       userName,
-      userUsername,
       userEmail,
+      userAvatar,
       userAddress,
       userPhone,
+      userBirthdate,
+      UserRegisteredAt,
     };
 
     this.users.push(newUser);

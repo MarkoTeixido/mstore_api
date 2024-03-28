@@ -25,8 +25,10 @@ const corsOptions = {
 // Middleware externo de CORS para permitir solicitudes de origen cruzado
 app.use(cors(corsOptions));
 
+// Configuración de Swagger
 const specs = swaggerJsdoc(options);
 
+// Ruta para servir la documentación de Swagger
 app.use(
   "/api/api-docs",
   swaggerUi.serve,

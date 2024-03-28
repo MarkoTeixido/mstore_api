@@ -24,8 +24,8 @@ const userController = {
   },
   createUser: async (req, res, next) => {
     try {
-      const { userName, userUsername, userEmail, userAddress, userPhone } = req.body;
-      const newUser = await userService.create(userName, userUsername, userEmail, userAddress, userPhone);
+      const { userName, userEmail, userAvatar, userAddress, userPhone, userBirthdate, userRegisteredAt } = req.body;
+      const newUser = await userService.create(userName, userEmail, userAvatar, userAddress, userPhone, userBirthdate, userRegisteredAt );
       res.status(201).json({
         message: 'User created successfully.',
         data: newUser
