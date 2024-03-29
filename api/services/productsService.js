@@ -1,5 +1,6 @@
 const faker = require('faker');
 const boom = require('@hapi/boom');
+const sequelize = require('../database/libs/sequelize');
 
 // Clase de Products Service que almacena todos los servicios
 class ProductsService {
@@ -37,10 +38,12 @@ class ProductsService {
 
   // Obtener todos los productos
   async find() {
-    if (this.products.length === 0) {
+    const query = 'SELECT * FROM tasks';
+    const [data] = await sequelize.query(query);
+    if (data.length === 0) {
       throw boom.notFound('There are no products available.');
     }
-    return this.products;
+    return data;
   };
 
   // Obtener un producto por ID
