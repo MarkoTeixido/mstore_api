@@ -1,6 +1,6 @@
 const faker = require('faker');
 const boom = require('@hapi/boom');
-const sequelize = require('../database/libs/sequelize');
+const { models } = require('../database/libs/sequelize');
 
 // Clase de Products Service que almacena todos los servicios
 class ProductsService {
@@ -19,17 +19,19 @@ class ProductsService {
       productName: faker.commerce.productName(),
       productPrice: parseFloat(faker.commerce.price()),
       productImage: faker.image.imageUrl(),
+      productCategory: 1,
     }));
   };
 
   // Crear un producto
-  async create(productName, productPrice, productImage) {
+  async create(productName, productPrice, productImage, productCategory) {
 
     const newProduct = {
       id: faker.datatype.uuid(),
       productName,
       productPrice,
       productImage,
+      productCategory,
     };
 
     this.products.push(newProduct);
@@ -38,17 +40,16 @@ class ProductsService {
 
   // Obtener todos los productos
   async find() {
-    const query = 'SELECT * FROM tasks';
-    const [data] = await sequelize.query(query);
-    if (data.length === 0) {
+    const product = await models.User.findAll();
+    if (product.length === 0) {
       throw boom.notFound('There are no products available.');
     }
-    return data;
+    return product;
   };
 
   // Obtener un producto por ID
   async findOne(id) {
-    const product = this.products.find(item => item.id === id);
+    const product = await models.User.findByPk(id);
     if (!product) {
       throw boom.notFound('Product not found.');
     }

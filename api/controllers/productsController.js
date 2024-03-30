@@ -24,8 +24,8 @@ const productController = {
   },
   createProduct: async (req, res, next) => {
     try {
-      const { productName, productPrice, productImage } = req.body;
-      const newProduct = await productsService.create(productName, productPrice, productImage);
+      const { productName, productPrice, productImage, productCategory } = req.body;
+      const newProduct = await productsService.create(productName, productPrice, productImage, productCategory);
       res.status(201).json({
         message: 'Product created successfully.',
         data: newProduct

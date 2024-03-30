@@ -46,16 +46,16 @@ class UsersService {
 
   // Obtener todos los productos
   async find() {
-    const response = await models.User.findAll();
-    if (response.length === 0) {
+    const users = await models.User.findAll();
+    if (users.length === 0) {
       throw boom.notFound('There are no users available.');
     }
-    return response;
+    return users;
   };
 
   // Obtener un producto por ID
   async findOne(id) {
-    const user = this.users.find(item => item.id === id);
+    const user = await models.User.findAll(id);
     if (!user) {
       throw boom.notFound('User not found.');
     }

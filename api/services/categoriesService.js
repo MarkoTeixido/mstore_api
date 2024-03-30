@@ -1,6 +1,5 @@
-// eslint-disable-next-line no-unused-vars
 const boom = require('@hapi/boom');
-const getConnection = require('../database/libs/postgres');
+const { models } = require('../database/libs/sequelize');
 
 class CategoryService {
 
@@ -11,13 +10,19 @@ class CategoryService {
   }
 
   async find() {
-    const client = await getConnection();
-    const rta = await client.query('SELECT * FROM tasks');
-    return rta.rows;
+    const categories = await models.Category.findAll();
+    if (categories.length === 0) {
+      throw boom.notFound('There are no categories available.');
+    }
+    return categories;
   }
 
   async findOne(id) {
-    return { id };
+    const category = await models.Category.findByPk(id);
+    if (category.length === 0) {
+      throw boom.notFound('Category not found.');
+    }
+    return category;
   }
 
   async update(id, changes) {
