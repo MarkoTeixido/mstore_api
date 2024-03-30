@@ -4,7 +4,7 @@ const helmet = require('helmet');
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 const routerApi = require('./routes');
-const { errorHandler, boomErrorHandler } = require('./middlewares/errorHandler');
+const { errorHandler, boomErrorHandler, ormErrorHandler } = require('./middlewares/errorHandler');
 const options = require('./Swagger');
 
 const app = express();
@@ -44,6 +44,7 @@ app.get('/api', (req, res) => {
 routerApi(app);
 
 // Middleware de manejo de errores personalizado
+app.use(ormErrorHandler);
 app.use(errorHandler);
 app.use(boomErrorHandler);
 

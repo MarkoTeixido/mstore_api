@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 // Definir los datos y sus condiciones
-const id = Joi.string().uuid();
+const id = Joi.number().integer();
 const productName = Joi.string().min(3).max(45);
 const productPrice = Joi.number().integer().min(10);
 const productImage = Joi.string().uri();

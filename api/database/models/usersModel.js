@@ -42,8 +42,13 @@ const UserSchema = {
   userBirthdate: {
     allowNull: true,
     type: DataTypes.DATE,
-    defaultValue: Sequelize.NOW,
     field: 'user_birthdate',
+  },
+  userCreatedAt: {
+    allowNull: false,
+    type: DataTypes.DATE,
+    defaultValue: Sequelize.NOW,
+    field: 'user_created_at',
   }
 };
 

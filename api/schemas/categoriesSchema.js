@@ -5,13 +5,13 @@ const categoryName = Joi.string().min(3).max(15);
 const categoryImage = Joi.string().uri();
 
 const createCategorySchema = Joi.object({
-  name: categoryName.required(),
-  image: categoryImage.required()
+  categoryName: categoryName.required(),
+  categoryImage: categoryImage.required()
 });
 
 const updateCategorySchema = Joi.object({
-  name: categoryName,
-  image: categoryImage
+  categoryName: categoryName,
+  categoryImage: categoryImage
 });
 
 const getCategorySchema = Joi.object({

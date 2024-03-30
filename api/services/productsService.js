@@ -1,46 +1,29 @@
-const faker = require('faker');
 const boom = require('@hapi/boom');
 const { models } = require('../database/libs/sequelize');
 
 // Clase de Products Service que almacena todos los servicios
 class ProductsService {
 
-  // Constructor que inicializa la lista de productos y genera los datos simulados
+  // Constructor
   constructor() {
-    this.products = [];
-    this.generate();
-  };
-
-  // Generar los productos
-  generate() {
-    const limit = 100;
-    this.products = Array.from({ length: limit }, () => ({
-      id: faker.datatype.uuid(),
-      productName: faker.commerce.productName(),
-      productPrice: parseFloat(faker.commerce.price()),
-      productImage: faker.image.imageUrl(),
-      productCategory: 1,
-    }));
   };
 
   // Crear un producto
   async create(productName, productPrice, productImage, productCategory) {
 
-    const newProduct = {
-      id: faker.datatype.uuid(),
+    const newProduct = await models.Product.create({
       productName,
       productPrice,
       productImage,
       productCategory,
-    };
+    });
 
-    this.products.push(newProduct);
     return newProduct;
   };
 
   // Obtener todos los productos
   async find() {
-    const product = await models.User.findAll();
+    const product = await models.Product.findAll();
     if (product.length === 0) {
       throw boom.notFound('There are no products available.');
     }
@@ -49,7 +32,7 @@ class ProductsService {
 
   // Obtener un producto por ID
   async findOne(id) {
-    const product = await models.User.findByPk(id);
+    const product = await models.Product.findByPk(id);
     if (!product) {
       throw boom.notFound('Product not found.');
     }
@@ -58,27 +41,15 @@ class ProductsService {
 
   // Actualizar un producto
   async update(id, updatedData) {
-    const index = this.products.findIndex(item => item.id === id);
-    if (index !== -1) {
-      this.products[index] = {
-        ...this.products[index],
-        ...updatedData,
-      };
-      return this.products[index];
-    }else {
-      throw boom.notFound("The product to update was not found.");
-    }
+    const product = await this.findOne(id);
+    const productUpdated = await product.update(updatedData);
+    return productUpdated;
   };
 
   // Eliminar un producto
   async delete(id) {
-    const index = this.products.findIndex(item => item.id === id);
-    if (index !== -1) {
-      const deletedProduct = this.products.splice(index, 1);
-      return deletedProduct[0];
-    } else {
-      throw boom.notFound("The product was not found.");
-    }
+    const product = await this.findOne(id);
+    await product.destroy();
   };
 }
 

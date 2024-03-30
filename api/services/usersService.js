@@ -1,46 +1,25 @@
-const faker = require('faker');
 const boom = require('@hapi/boom');
 const { models } = require('../database/libs/sequelize');
 
 // Clase de Products Service que almacena todos los servicios
 class UsersService {
 
-  // Constructor que inicializa la lista de productos y genera los datos simulados
+  // Constructor
   constructor() {
-    this.users = [];
-    this.generate();
-  };
-
-  // Generar los productos
-  generate() {
-    const limit = 100;
-    this.users = Array.from({ length: limit }, () => ({
-      id: faker.datatype.uuid(),
-      userName: faker.internet.userName(),
-      userEmail: faker.internet.email(),
-      userAvatar: faker.image.avatar(),
-      userAddress: faker.address.streetAddress(),
-      userPhone: faker.phone.phoneNumber(),
-      userBirthdate: faker.date.future(),
-      UserRegisteredAt: faker.date.past(),
-    }));
   };
 
   // Crear un producto
-  async create(userName, userEmail, userAvatar, userAddress, userPhone, userBirthdate, UserRegisteredAt ) {
+  async create(userName, userEmail, userAvatar, userAddress, userPhone, userBirthdate ) {
 
-    const newUser = {
-      id: faker.datatype.uuid(),
+    const newUser = await models.User.create({
       userName,
       userEmail,
       userAvatar,
       userAddress,
       userPhone,
       userBirthdate,
-      UserRegisteredAt,
-    };
+    });
 
-    this.users.push(newUser);
     return newUser;
   };
 
@@ -55,7 +34,7 @@ class UsersService {
 
   // Obtener un producto por ID
   async findOne(id) {
-    const user = await models.User.findAll(id);
+    const user = await models.User.findByPk(id);
     if (!user) {
       throw boom.notFound('User not found.');
     }
@@ -64,27 +43,15 @@ class UsersService {
 
   // Actualizar un producto
   async update(id, updatedData) {
-    const index = this.users.findIndex(item => item.id === id);
-    if (index !== -1) {
-      this.users[index] = {
-        ...this.users[index],
-        ...updatedData,
-      };
-      return this.users[index];
-    }else {
-      throw boom.notFound("The user to update was not found.");
-    }
+    const user = await this.findOne(id);
+    const userUpdated = await user.update(updatedData);
+    return userUpdated;
   };
 
   // Eliminar un producto
   async delete(id) {
-    const index = this.users.findIndex(item => item.id === id);
-    if (index !== -1) {
-      const deletedUser = this.users.splice(index, 1);
-      return deletedUser[0];
-    } else {
-      throw boom.notFound("The user was not found.");
-    }
+    const user = await this.findOne(id);
+    await user.destroy();
   };
 }
 

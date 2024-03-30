@@ -1,13 +1,14 @@
 const Joi = require('joi');
 
 // Definir los datos y sus condiciones
-const id = Joi.string().uuid();
+const id = Joi.number().integer();
 const userName = Joi.string().min(3).max(45).pattern(/^[\w\s]+$/);
 const userEmail = Joi.string().email();
 const userAvatar = Joi.string().uri();
 const userAddress = Joi.string().min(3);
 const userPhone = Joi.number().min(3);
 const userBirthdate = Joi.date().iso();
+const userCreatedAt = Joi.date().iso();
 
 // Esquema para crear un producto
 const createUserSchema = Joi.object({
@@ -16,7 +17,8 @@ const createUserSchema = Joi.object({
   userAvatar: userAvatar.required(),
   userAddress: userAddress.required(),
   userPhone: userPhone.required(),
-  userBirthdate: userBirthdate.required(),
+  userBirthdate: userBirthdate,
+  userCreatedAt: userCreatedAt,
 });
 
 // Esquema para traer un usuario por ID
