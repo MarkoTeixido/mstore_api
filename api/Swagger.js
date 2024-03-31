@@ -35,7 +35,7 @@ const options = {
               example: {
                   productName: 'Smartwatch M! Premium',
                   productPrice: 199,
-                  productImage: 'http://example.com/img/11'
+                  productImage: 'http://img.com/products/11'
               }
           },
           user: {
@@ -71,10 +71,28 @@ const options = {
             example: {
               userName: "robertaso57",
               userEmail: "robertaso@gmail.com",
-              userAvatar: "http://example.com/img/189",
+              userAvatar: "http://img.com/avatar/189",
               userAddress: "065 disney Islands",
               userPhone: "1-757-619-999",
               userBirthdate: "1999-01-01",
+            }
+          },
+          category: {
+            type: 'object',
+            required: ['categoryName', 'categoryImage'],
+            properties: {
+                categoryName: {
+                    type: 'string',
+                    description: 'Name of the category'
+                },
+                categoryImage: {
+                    type: 'url',
+                    description: 'Image of the category'
+                },
+            },
+            example: {
+              categoryName: "Technology",
+              categoryImage: "https://img.com/technology/27854",
             }
           }
       },
@@ -97,6 +115,7 @@ const options = {
   apis: [
     "./api/routes/productsRouter.js",
     "./api/routes/usersRouter.js",
+    "./api/routes/categoriesRouter.js",
   ],
 };
 
