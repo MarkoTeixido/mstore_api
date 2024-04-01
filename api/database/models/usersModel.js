@@ -47,8 +47,8 @@ const UserSchema = {
   userCreatedAt: {
     allowNull: false,
     type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW,
     field: 'user_created_at',
+    defaultValue: DataTypes.NOW,
   },
   userRole: {
     allowNull: false,
