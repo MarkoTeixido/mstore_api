@@ -54,7 +54,7 @@ const UserSchema = {
     allowNull: false,
     type: DataTypes.STRING,
     field: 'user_role',
-    defaultValue: "client",
+    defaultValue: "costumer",
   }
 };
 
