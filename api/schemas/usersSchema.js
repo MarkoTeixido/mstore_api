@@ -9,6 +9,7 @@ const userAddress = Joi.string().min(3);
 const userPhone = Joi.number().min(3);
 const userBirthdate = Joi.date().iso();
 const userCreatedAt = Joi.date().iso();
+const userRole = Joi.string().min(4).max(12);
 
 // Esquema para crear un producto
 const createUserSchema = Joi.object({
@@ -19,6 +20,7 @@ const createUserSchema = Joi.object({
   userPhone: userPhone.required(),
   userBirthdate: userBirthdate,
   userCreatedAt: userCreatedAt,
+  userRole: userRole,
 });
 
 // Esquema para traer un usuario por ID
@@ -34,6 +36,7 @@ const updateUserSchema = Joi.object({
   userAddress: userAddress,
   userPhone: userPhone,
   userBirthdate: userBirthdate,
+  userRole: userRole,
 });
 
 module.exports = { createUserSchema, getUserSchema, updateUserSchema };

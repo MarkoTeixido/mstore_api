@@ -40,7 +40,7 @@ const options = {
           },
           user: {
             type: 'object',
-            required: ['userName', 'userUsername', 'userEmail', 'userAvatar', 'userAddress', 'userPhone', 'userBirthdate'],
+            required: ['userName', 'userUsername', 'userEmail', 'userAvatar', 'userAddress', 'userPhone', 'userBirthdate', 'userRole'],
             properties: {
                 userName: {
                     type: 'string',
@@ -66,6 +66,10 @@ const options = {
                 userBirthdate: {
                   type: 'string',
                   description: 'Birthdate of the user'
+                },
+                userRole: {
+                  type: 'string',
+                  description: 'Role of the user'
                 }
             },
             example: {
@@ -75,6 +79,7 @@ const options = {
               userAddress: "065 disney Islands",
               userPhone: "1-757-619-999",
               userBirthdate: "1999-01-01",
+              userRole: "client",
             }
           },
           category: {

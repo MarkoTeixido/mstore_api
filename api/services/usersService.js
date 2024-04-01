@@ -9,7 +9,7 @@ class UsersService {
   };
 
   // Crear un producto
-  async create(userName, userEmail, userAvatar, userAddress, userPhone, userBirthdate ) {
+  async create(userName, userEmail, userAvatar, userAddress, userPhone, userBirthdate, userRole) {
 
     const newUser = await models.User.create({
       userName,
@@ -18,6 +18,7 @@ class UsersService {
       userAddress,
       userPhone,
       userBirthdate,
+      userRole,
     });
 
     return newUser;
