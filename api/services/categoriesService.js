@@ -5,10 +5,10 @@ class CategoryService {
   constructor(){
   }
 
-  async create(categoryName, categoryImage) {
+  async create(name, image) {
     const newCategory = await models.Category.create({
-      categoryName,
-      categoryImage,
+      name,
+      image,
     });
 
     return newCategory;

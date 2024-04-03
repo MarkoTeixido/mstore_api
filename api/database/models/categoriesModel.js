@@ -9,19 +9,17 @@ const CategorySchema = {
     primaryKey: true,
     type: DataTypes.INTEGER
   },
-  categoryName: {
+  name: {
     allowNull: false,
     type: DataTypes.STRING,
     unique: true,
-    field: 'category_name',
   },
-  categoryImage: {
+  image: {
     allowNull: false,
     type: DataTypes.STRING,
     validate: {
       isUrl: true
     },
-    field: 'category_image',
   },
 };
 

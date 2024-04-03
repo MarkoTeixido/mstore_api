@@ -3,7 +3,7 @@ const CategoriesService = require('../services/categoriesService');
 // Instancia del productsService
 const categoriesService = new CategoriesService();
 
-// Controlador de los productos
+// Controlador de las categorias
 const categoryController = {
   getAllCategories: async (req, res, next) => {
     try {
@@ -24,8 +24,8 @@ const categoryController = {
   },
   createCategory: async (req, res, next) => {
     try {
-      const { categoryName, categoryImage } = req.body;
-      const newCategory = await categoriesService.create(categoryName, categoryImage);
+      const { name, image } = req.body;
+      const newCategory = await categoriesService.create(name, image);
       res.status(201).json({
         message: 'Category created successfully.',
         data: newCategory

@@ -9,29 +9,26 @@ const ProductSchema = {
     primaryKey: true,
     type: DataTypes.INTEGER
   },
-  productName: {
+  name: {
     allowNull: false,
     type: DataTypes.STRING,
     unique: true,
-    field: 'product_name',
   },
-  productPrice: {
+  price: {
     allowNull: false,
     type: DataTypes.DECIMAL(10, 2),
-    field: 'product_price',
   },
-  productImage: {
+  image: {
     allowNull: false,
     type: DataTypes.STRING,
     validate: {
       isUrl: true
     },
-    field: 'product_image',
   },
-  productCategory: {
+  categoryId: {
     allowNull: false,
     type: DataTypes.INTEGER,
-    field: 'product_category',
+    field: 'category_id',
     references: {
       model: 'categories',
       key: 'id'

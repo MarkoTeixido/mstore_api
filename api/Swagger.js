@@ -17,87 +17,100 @@ const options = {
       schemas: {
           product: {
               type: 'object',
-              required: ['productName', 'productPrice', 'productImage'],
+              required: ['name', 'price', 'image', 'category_id'],
               properties: {
-                  productName: {
+                  name: {
                       type: 'string',
                       description: 'Name of the product'
                   },
-                  productPrice: {
+                  price: {
                       type: 'number',
                       description: 'Price of the product'
                   },
-                  productImage: {
+                  image: {
                       type: 'url',
                       description: 'Image of the product'
+                  },
+                  categoryId:{
+                    type: 'number',
+                    description: 'Category_ID of the product'
                   }
               },
               example: {
                   productName: 'Smartwatch M! Premium',
                   productPrice: 199,
-                  productImage: 'http://img.com/products/11'
+                  productImage: 'http://img.com/products/11',
+                  category: '1'
               }
           },
           user: {
             type: 'object',
-            required: ['userName', 'userUsername', 'userEmail', 'userAvatar', 'userAddress', 'userPhone', 'userBirthdate', 'userRole'],
+            required: ['email', 'password'],
             properties: {
-                userName: {
-                    type: 'string',
-                    description: 'Username of the user'
-                },
-                userEmail: {
+                email: {
                     type: 'string',
                     format: 'email',
                     description: 'Email of the user'
                 },
-                userAvatar: {
-                  type: 'url',
-                  description: 'Avatar of the user'
-                },
-                userAddress: {
+                password: {
                   type: 'string',
-                  description: 'Address of the user'
-                },
-                userPhone: {
-                  type: 'string',
-                  description: 'Phone number of the user'
-                },
-                userBirthdate: {
-                  type: 'string',
-                  description: 'Birthdate of the user'
-                },
-                userRole: {
-                  type: 'string',
-                  description: 'Role of the user'
+                  description: 'Password of the user'
                 }
             },
             example: {
-              userName: "robertaso57",
               userEmail: "robertaso@gmail.com",
-              userAvatar: "http://img.com/avatar/189",
-              userAddress: "065 disney Islands",
-              userPhone: "1-757-619-999",
-              userBirthdate: "1999-01-01",
-              userRole: "client",
+              password: "user123",
             }
           },
           category: {
             type: 'object',
-            required: ['categoryName', 'categoryImage'],
+            required: ['name', 'image'],
             properties: {
-                categoryName: {
+                name: {
                     type: 'string',
                     description: 'Name of the category'
                 },
-                categoryImage: {
+                image: {
                     type: 'url',
                     description: 'Image of the category'
                 },
             },
             example: {
-              categoryName: "Technology",
-              categoryImage: "https://img.com/technology/27854",
+              name: "Technology",
+              image: "https://img.com/technology/27854",
+            }
+          },
+          customer: {
+            type: 'object',
+            required: ['name', 'lastname', 'address', 'phone', 'birthday'],
+            properties: {
+                name: {
+                    type: 'string',
+                    description: 'Name of the customer'
+                },
+                lastname: {
+                    type: 'string',
+                    description: 'Lastname of the customer'
+                },
+                address: {
+                    type: 'string',
+                    description: 'Address of the customer'
+                },
+                phone: {
+                  type: 'number',
+                  description: 'Phone number of the customer'
+                },
+                birthdate: {
+                  type: 'string',
+                  description: 'Birthdate of the customer'
+                }
+            },
+            example: {
+              name: "Elon",
+              lastname: "Musk",
+              address: "Hollywood Blvd 1234",
+              phone: "3511234567",
+              birtdate: "1995-04-25",
             }
           }
       },
@@ -121,6 +134,7 @@ const options = {
     "./api/routes/productsRouter.js",
     "./api/routes/usersRouter.js",
     "./api/routes/categoriesRouter.js",
+    "./api/routes/customersRouter.js",
   ],
 };
 
