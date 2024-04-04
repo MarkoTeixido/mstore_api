@@ -7,8 +7,8 @@ const customerService = new customersService();
 const customerController = {
   getAllCustomers: async (req, res, next) => {
     try {
-      const users = await customerService.find();
-      (users && users.length > 0) ? res.status(200).json(users) : res.status(204).send("There are no customers available.");
+      const customers = await customerService.find();
+      (customers && customers.length > 0) ? res.status(200).json(customers) : res.status(204).send("There are no customers available.");
     } catch (error) {
       next(error);
     }
@@ -16,19 +16,19 @@ const customerController = {
   getCustomerByID: async (req, res, next) => {
     try {
       const { id } = req.params;
-      const user = await customerService.findOne(id);
-      res.status(200).json(user);
+      const customer = await customerService.findOne(id);
+      res.status(200).json(customer);
     } catch (error) {
       next(error);
     }
   },
   createCustomer: async (req, res, next) => {
     try {
-      const { name, lastname, address, phone, birthdate } = req.body;
-      const newUser = await customerService.create(name, lastname, address, phone, birthdate);
+      const dataCustomer = req.body;
+      const newCustomer = await customerService.create(dataCustomer);
       res.status(201).json({
         message: 'Customer created successfully.',
-        data: newUser
+        data: newCustomer
       });
     } catch (error) {
       next(error);
@@ -36,12 +36,12 @@ const customerController = {
   },
   updateCustomerByID: async (req, res, next) => {
     try {
-      const {id} = req.params;
+      const { id } = req.params;
       const body = req.body;
-      const updatedUser = await customerService.update(id, body);
+      const updatedCustomer = await customerService.update(id, body);
       res.status(200).json({
         message: 'Customer updated successfully.',
-        data: updatedUser,
+        data: updatedCustomer,
       });
     } catch (error) {
       next(error);
@@ -50,10 +50,10 @@ const customerController = {
   deleteCustomer: async (req, res, next) => {
     try {
       const { id } = req.params;
-      const deletedUser = await customerService.delete(id);
+      const deletedCustomer = await customerService.delete(id);
       res.status(200).json({
         message: 'Customer deleted successfully.',
-        data: deletedUser,
+        data: deletedCustomer,
       });
     } catch (error) {
       next(error);

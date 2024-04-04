@@ -9,14 +9,8 @@ class ProductsService {
   };
 
   // Crear un producto
-  async create(name, price, image, categoryId) {
-
-    const newProduct = await models.Product.create({
-      name,
-      price,
-      image,
-      categoryId,
-    });
+  async create(dataProduct) {
+    const newProduct = await models.Product.create(dataProduct);
 
     return newProduct;
   };

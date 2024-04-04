@@ -3,7 +3,7 @@ const Joi = require('joi');
 // Definir los datos y sus condiciones
 const id = Joi.number().integer();
 const email = Joi.string().email();
-const password = Joi.string().uri();
+const password = Joi.string().min(5);
 const userCreatedAt = Joi.date().iso();
 
 // Esquema para crear un producto

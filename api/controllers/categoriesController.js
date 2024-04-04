@@ -16,16 +16,16 @@ const categoryController = {
   getCategoryByID: async (req, res, next) => {
     try {
       const { id } = req.params;
-      const product = await categoriesService.findOne(id);
-      res.status(200).json(product);
+      const category = await categoriesService.findOne(id);
+      res.status(200).json(category);
     } catch (error) {
       next(error);
     }
   },
   createCategory: async (req, res, next) => {
     try {
-      const { name, image } = req.body;
-      const newCategory = await categoriesService.create(name, image);
+      const dataCategory = req.body;
+      const newCategory = await categoriesService.create(dataCategory);
       res.status(201).json({
         message: 'Category created successfully.',
         data: newCategory

@@ -9,14 +9,10 @@ class CustomersService {
   };
 
   // Crear un cliente
-  async create(name, lastname, address, phone, birthdate) {
+  async create(dataCustomer) {
 
-    const newUser = await models.User.create({
-      name,
-      lastname,
-      address,
-      phone,
-      birthdate,
+    const newUser = await models.User.create(dataCustomer, {
+      include: ['user']
     });
 
     return newUser;
@@ -24,7 +20,9 @@ class CustomersService {
 
   // Obtener todos los clientes
   async find() {
-    const users = await models.User.findAll();
+    const users = await models.User.findAll({
+      include: ['user']
+    });
     if (users.length === 0) {
       throw boom.notFound('There are no customers available.');
     }

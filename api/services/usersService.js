@@ -9,19 +9,17 @@ class UsersService {
   };
 
   // Crear un producto
-  async create(email, password) {
-
-    const newUser = await models.User.create({
-      email,
-      password,
-    });
+  async create(dataUser) {
+    const newUser = await models.User.create(dataUser);
 
     return newUser;
   };
 
   // Obtener todos los productos
   async find() {
-    const users = await models.User.findAll();
+    const users = await models.User.findAll({
+      include: ['Customer']
+    });
     if (users.length === 0) {
       throw boom.notFound('There are no users available.');
     }
