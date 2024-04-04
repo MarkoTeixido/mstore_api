@@ -54,7 +54,7 @@ class Customer extends Model {
     return {
       sequelize,
       tableName: CUSTOMER_TABLE,
-      modelName: 'Costumer',
+      modelName: 'Customer',
       timestamps: false,
     }
   };
