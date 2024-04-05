@@ -17,7 +17,9 @@ class ProductsService {
 
   // Obtener todos los productos
   async find() {
-    const product = await models.Product.findAll();
+    const product = await models.Product.findAll({
+      include: ['category']
+    });
     if (product.length === 0) {
       throw boom.notFound('There are no products available.');
     }
@@ -26,7 +28,9 @@ class ProductsService {
 
   // Obtener un producto por ID
   async findOne(id) {
-    const product = await models.Product.findByPk(id);
+    const product = await models.Product.findByPk(id, {
+      include: ['category']
+    });
     if (!product) {
       throw boom.notFound('Product not found.');
     }
