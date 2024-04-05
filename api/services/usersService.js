@@ -18,7 +18,7 @@ class UsersService {
   // Obtener todos los productos
   async find() {
     const users = await models.User.findAll({
-      include: ['Customer']
+      include: ['customer']
     });
     if (users.length === 0) {
       throw boom.notFound('There are no users available.');

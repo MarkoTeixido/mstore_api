@@ -11,44 +11,44 @@ class CustomersService {
   // Crear un cliente
   async create(dataCustomer) {
 
-    const newUser = await models.User.create(dataCustomer, {
+    const newCustomer = await models.Customer.create(dataCustomer, {
       include: ['user']
     });
 
-    return newUser;
+    return newCustomer;
   };
 
   // Obtener todos los clientes
   async find() {
-    const users = await models.User.findAll({
+    const customers = await models.Customer.findAll({
       include: ['user']
     });
-    if (users.length === 0) {
+    if (customers.length === 0) {
       throw boom.notFound('There are no customers available.');
     }
-    return users;
+    return customers;
   };
 
   // Obtener un cliente por ID
   async findOne(id) {
-    const user = await models.User.findByPk(id);
-    if (!user) {
+    const customer = await models.Customer.findByPk(id);
+    if (!customer) {
       throw boom.notFound('Customer not found.');
     }
-    return user;
+    return customer;
   };
 
   // Actualizar un cliente
   async update(id, updatedData) {
-    const user = await this.findOne(id);
-    const userUpdated = await user.update(updatedData);
-    return userUpdated;
+    const customer = await this.findOne(id);
+    const customerUpdated = await customer.update(updatedData);
+    return customerUpdated;
   };
 
   // Eliminar un cliente
   async delete(id) {
-    const user = await this.findOne(id);
-    await user.destroy();
+    const customer = await this.findOne(id);
+    await customer.destroy();
   };
 }
 
