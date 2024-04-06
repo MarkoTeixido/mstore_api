@@ -10,7 +10,7 @@ const { createOrderSchema, addItemOrderSchema, getOrderSchema } = require('../sc
  * @swagger
  * tags:
  *   name: Orders
- *   description: M!Store - Users Data
+ *   description: M!Store - Orders Data
  */
 
 /**
@@ -81,7 +81,7 @@ router.post('/', validatorHandler(createOrderSchema, 'body'), orderController.cr
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/order'
+ *               $ref: '#/components/schemas/orderItem'
  *       responses:
  *         "400":
  *           $ref: '#/components/responses/400'

@@ -16,14 +16,26 @@ class ProductsService {
   };
 
   // Obtener todos los productos
-  async find() {
-    const product = await models.Product.findAll({
-      include: ['category']
-    });
-    if (product.length === 0) {
+  async find(dataQuery) {
+
+    const options = {
+      include: ['category'],
+    }
+
+    const { limit, offset } = dataQuery;
+
+    if (limit && offset) {
+      options.limit =  limit;
+      options.offset =  offset;
+    }
+
+    const products = await models.Product.findAll(options);
+
+    if (products.length === 0) {
       throw boom.notFound('There are no products available.');
     }
-    return product;
+
+    return products;
   };
 
   // Obtener un producto por ID

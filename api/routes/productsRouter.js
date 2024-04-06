@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const productController = require('../controllers/productsController');
 const validatorHandler = require('../middlewares/validatorHandler');
-const { createProductSchema, getProductSchema, updateProductSchema } = require('../schemas/productsSchema');
+const { createProductSchema, getProductSchema, updateProductSchema, queryProductSchema } = require('../schemas/productsSchema');
 
 // Las siguientes lineas de comentarios con '@swagger' simplemente ignorenlas, solo sirven para la documentación de la API
 
@@ -32,7 +32,7 @@ const { createProductSchema, getProductSchema, updateProductSchema } = require('
  *           $ref: '#/components/responses/401'
  */
 // Obtener todos los productos
-router.get('/', productController.getAllProducts);
+router.get('/', validatorHandler(queryProductSchema, 'query'), productController.getAllProducts);
 
 /**
  * @swagger

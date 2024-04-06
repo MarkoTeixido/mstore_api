@@ -7,7 +7,8 @@ const productsService = new ProductsService();
 const productController = {
   getAllProducts: async (req, res, next) => {
     try {
-      const products = await productsService.find();
+      const dataQuery = req.query;
+      const products = await productsService.find(dataQuery);
       (products && products.length > 0) ? res.status(200).json(products) : res.status(204).send("There are no products available.");
     } catch (error) {
       next(error);
