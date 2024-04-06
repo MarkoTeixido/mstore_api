@@ -4,10 +4,6 @@ const { models } = require('../database/libs/sequelize');
 // Clase de Orders Service que almacena todos los servicios
 class OrdersService {
 
-  // Constructor
-  constructor() {
-  };
-
   // Crear una orden
   async create(dataOrder) {
 
@@ -16,13 +12,12 @@ class OrdersService {
     return newOrder;
   };
 
-  // Obtener todos los clientes
-  async find() {
-    const orders = await models.Order.findAll();
-    if (orders.length === 0) {
-      throw boom.notFound('There are no orders available.');
-    }
-    return orders;
+  // Agregar un item en una orden
+  async addItem(dataOrderItem) {
+
+    const newItem = await models.OrderProduct.create(dataOrderItem);
+
+    return newItem;
   };
 
   // Obtener una orden por ID
@@ -32,26 +27,14 @@ class OrdersService {
         {
           association: 'customer',
           include: ['user']
-        }
+        },
+        'items'
       ]
     });
     if (!order) {
       throw boom.notFound('Order not found.');
     }
     return order;
-  };
-
-  // Actualizar una orden
-  async update(id, updatedData) {
-    const order = await this.findOne(id);
-    const orderUpdated = await order.update(updatedData);
-    return orderUpdated;
-  };
-
-  // Eliminar una orden
-  async delete(id) {
-    const order = await this.findOne(id);
-    await order.destroy();
   };
 }
 

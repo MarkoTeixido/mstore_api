@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const orderController = require('../controllers/ordersController');
 const validatorHandler = require('../middlewares/validatorHandler');
-const { createOrderSchema, getOrderSchema } = require('../schemas/ordersSchema');
+const { createOrderSchema, addItemOrderSchema, getOrderSchema } = require('../schemas/ordersSchema');
 
 // Las siguientes lineas de comentarios con '@swagger' simplemente ignorenlas, solo sirven para la documentación de la API
 
@@ -69,6 +69,32 @@ router.get('/:id', validatorHandler(getOrderSchema, 'params'), orderController.g
 
 // Crear un nuevo usuario
 router.post('/', validatorHandler(createOrderSchema, 'body'), orderController.createOrder);
+
+/**
+ * @swagger
+ *   /api/v1/orders/add-item:
+ *     post:
+ *       summary: Add order item
+ *       tags: [Orders]
+ *       requestBody:
+ *         required: true
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/order'
+ *       responses:
+ *         "400":
+ *           $ref: '#/components/responses/400'
+ *         "401":
+ *           $ref: '#/components/responses/401'
+ *         "201":
+ *           description: Item added to order successfully
+ *           contents:
+ *             application/json
+ */
+
+// Crear un nuevo usuario
+router.post('/add-item', validatorHandler(addItemOrderSchema, 'body'), orderController.addItemOrder);
 
 
 
