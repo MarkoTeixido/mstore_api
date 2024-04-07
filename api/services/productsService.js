@@ -1,4 +1,5 @@
 const boom = require('@hapi/boom');
+const { Op } = require('sequelize');
 const { models } = require('../database/libs/sequelize');
 
 // Clase de Products Service que almacena todos los servicios
@@ -20,6 +21,7 @@ class ProductsService {
 
     const options = {
       include: ['category'],
+      where: {}
     }
 
     const { limit, offset } = dataQuery;
@@ -27,6 +29,14 @@ class ProductsService {
     if (limit && offset) {
       options.limit =  limit;
       options.offset =  offset;
+    }
+
+    const { price_min, price_max } = dataQuery;
+    if (price_min && price_max) {
+      options.where.price = {
+        [Op.gte]: price_min,
+        [Op.lte]: price_max,
+      };
     }
 
     const products = await models.Product.findAll(options);
