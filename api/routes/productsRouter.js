@@ -19,6 +19,19 @@ const { createProductSchema, getProductSchema, updateProductSchema, queryProduct
  *     get:
  *       summary: Get all products
  *       tags: [Products]
+ *       parameters:
+ *         - in: query
+ *           name: limit
+ *           schema:
+ *             type: number
+ *           required: false
+ *           description: Number of products to return
+ *         - in: query
+ *           name: offset
+ *           schema:
+ *             type: number
+ *           required: false
+ *           description: Number of products to skip
  *       responses:
  *         "200":
  *           description: The list of products
