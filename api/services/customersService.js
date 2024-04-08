@@ -4,13 +4,8 @@ const { models } = require('../database/libs/sequelize');
 // Clase de Customers Service que almacena todos los servicios
 class CustomersService {
 
-  // Constructor
-  constructor() {
-  };
-
   // Crear un cliente
   async create(dataCustomer) {
-
     const newCustomer = await models.Customer.create(dataCustomer, {
       include: ['user']
     });

@@ -1,7 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 
+// Definir el nombre de la tabla en la base de datos
 const CATEGORY_TABLE = 'categories';
 
+// Esquema de la categoría que define la estructura de la tabla en la base de datos
 const CategorySchema = {
   id: {
     allowNull: false,
@@ -23,7 +25,9 @@ const CategorySchema = {
   },
 };
 
+// Definir el modelo de categoría la clase Model de Sequelize
 class Category extends Model {
+  // Método estático para definir las asociaciones entre modelos
   static associate(models){
     this.hasMany(models.Product, {
       as: 'products',
@@ -31,6 +35,7 @@ class Category extends Model {
     });
   };
 
+  // Método estático para configurar el modelo de categoría
   static config(sequelize) {
     return {
       sequelize,

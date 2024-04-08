@@ -1,5 +1,7 @@
+// Importar la clase Client del paquete pg
 const { Client } = require('pg');
 
+// Conexión a la base de datos
 async function getConnection() {
   const client = new Client({
     host: 'localhost',

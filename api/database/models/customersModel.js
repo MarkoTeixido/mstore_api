@@ -1,8 +1,10 @@
 const { Model, DataTypes } = require('sequelize');
 const { USER_TABLE } = require('./usersModel');
 
+// Definir el nombre de la tabla en la base de datos
 const CUSTOMER_TABLE = 'customers';
 
+// Esquema de cliente que define la estructura de la tabla en la base de datos
 const CustomerSchema = {
   id: {
     allowNull: false,
@@ -45,7 +47,9 @@ const CustomerSchema = {
   }
 };
 
+// Definir el modelo de cliente la clase Model de Sequelize
 class Customer extends Model {
+  // Método estático para definir las asociaciones entre modelos
   static associate(models) {
     this.belongsTo(models.User, {as: 'user'});
     this.hasMany(models.Order, {
@@ -54,6 +58,7 @@ class Customer extends Model {
     })
   }
 
+  // Método estático para configurar el modelo de cliente
   static config(sequelize) {
     return {
       sequelize,

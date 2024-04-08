@@ -1,3 +1,4 @@
+// Rutas de archivos de configuración relacionados con la base de datos
 module.exports = {
   'config': './api/database/config.js',
   'models-path': './api/database/models/',

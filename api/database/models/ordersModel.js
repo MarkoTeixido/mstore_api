@@ -1,8 +1,10 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 const { CUSTOMER_TABLE } = require('./customersModel');
 
+// Definir el nombre de la tabla en la base de datos
 const ORDER_TABLE = 'orders';
 
+// Esquema de orden que define la estructura de la tabla en la base de datos
 const OrderSchema = {
   id: {
     allowNull: false,
@@ -40,10 +42,10 @@ const OrderSchema = {
   }
 }
 
+// Definir el modelo de orden la clase Model de Sequelize
 class Order extends Model {
-
+  // Método estático para definir las asociaciones entre modelos
   static associate(models) {
-
     this.belongsTo(models.Customer, {
       as: 'customer',
     });
@@ -56,6 +58,7 @@ class Order extends Model {
     });
   }
 
+  // Método estático para configurar el modelo de orden
   static config(sequelize) {
     return {
       sequelize,

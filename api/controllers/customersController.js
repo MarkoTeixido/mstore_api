@@ -1,6 +1,6 @@
 const customersService = require('../services/customersService');
 
-// Instancia del usersService
+// Instancia del customersService
 const customerService = new customersService();
 
 // Controlador de los clientes

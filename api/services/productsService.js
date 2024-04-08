@@ -5,10 +5,6 @@ const { models } = require('../database/libs/sequelize');
 // Clase de Products Service que almacena todos los servicios
 class ProductsService {
 
-  // Constructor
-  constructor() {
-  };
-
   // Crear un producto
   async create(dataProduct) {
     const newProduct = await models.Product.create(dataProduct);

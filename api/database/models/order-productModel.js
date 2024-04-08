@@ -1,10 +1,11 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-
 const { ORDER_TABLE } = require('./ordersModel');
 const { PRODUCT_TABLE } = require('./productsModel');
 
+// Definir el nombre de la tabla en la base de datos
 const ORDER_PRODUCT_TABLE = 'orders_products';
 
+// Esquema de orderProduct que define la estructura de la tabla en la base de datos
 const OrderProductSchema =  {
   id: {
     allowNull: false,
@@ -46,10 +47,12 @@ const OrderProductSchema =  {
   }
 }
 
+// Definir el modelo de orderProduct la clase Model de Sequelize
 class OrderProduct extends Model {
 
   static associate() {}
 
+  // Método estático para configurar el modelo de orderProduct
   static config(sequelize) {
     return {
       sequelize,

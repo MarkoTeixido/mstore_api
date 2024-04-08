@@ -1,8 +1,10 @@
 const { Model, DataTypes } = require('sequelize');
 const { CATEGORY_TABLE } = require('./categoriesModel');
 
+// Definir el nombre de la tabla en la base de datos
 const PRODUCT_TABLE = 'products';
 
+// Esquema de producto que define la estructura de la tabla en la base de datos
 const ProductSchema = {
   id: {
     allowNull: false,
@@ -43,11 +45,14 @@ const ProductSchema = {
   },
 };
 
+// Definir el modelo de producto la clase Model de Sequelize
 class Product extends Model {
+  // Método estático para definir las asociaciones entre modelos
   static associate(models){
     this.belongsTo(models.Category, {as: 'category'});
   };
 
+  // Método estático para configurar el modelo de producto
   static config(sequelize) {
     return {
       sequelize,

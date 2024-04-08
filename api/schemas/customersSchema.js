@@ -11,6 +11,7 @@ const userId = Joi.number().integer().min(1).max(2);
 const email = Joi.string().email();
 const password = Joi.string().min(5);
 
+
 // Esquema para crear un cliente
 const createCustomerSchema = Joi.object({
   name: name.required(),
@@ -38,5 +39,6 @@ const updateCustomerSchema = Joi.object({
   birthdate: birthdate,
   userId: userId,
 });
+
 
 module.exports = { createCustomerSchema, getCustomerSchema, updateCustomerSchema };

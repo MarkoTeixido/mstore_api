@@ -1,7 +1,9 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
+// Definir el nombre de la tabla en la base de datos
 const USER_TABLE = 'users';
 
+// Esquema de usuario que define la estructura de la tabla en la base de datos
 const UserSchema = {
   id: {
     allowNull: false,
@@ -31,7 +33,9 @@ const UserSchema = {
   }
 };
 
+// Definir el modelo de usuario la clase Model de Sequelize
 class User extends Model {
+  // Método estático para definir las asociaciones entre modelos
   static associate(models){
     this.hasOne(models.Customer, {
       as: 'customer',
@@ -39,6 +43,7 @@ class User extends Model {
     });
   };
 
+  // Método estático para configurar el modelo de usuario
   static config(sequelize) {
     return {
       sequelize,

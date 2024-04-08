@@ -1,9 +1,9 @@
 const OrdersService = require('../services/ordersService');
 
-// Instancia del productsService
+// Instancia del ordersService
 const ordersService = new OrdersService();
 
-// Controlador de los productos
+// Controlador de las ordenes
 const orderController = {
   getOrderByID: async (req, res, next) => {
     try {

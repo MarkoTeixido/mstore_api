@@ -1,6 +1,7 @@
 // Instancia propia de Sequelize para detectar errores
 const { ValidationError } = require('sequelize');
 
+// Middleware para manejar errores generales en la aplicación
 // eslint-disable-next-line no-unused-vars
 function errorHandler (err, req, res, next) {
   res.status(500).json({
@@ -9,6 +10,7 @@ function errorHandler (err, req, res, next) {
   });
 };
 
+// Middleware para manejar errores con el módulo Boom
 function boomErrorHandler (err, req, res, next) {
   if(err.isBoom) {
     const { output } = err;
@@ -18,6 +20,7 @@ function boomErrorHandler (err, req, res, next) {
   }
 };
 
+// Middleware para manejar errores específicos de Sequelize
 function ormErrorHandler(err, req, res, next) {
   if (err instanceof ValidationError) {
     res.status(409).json({

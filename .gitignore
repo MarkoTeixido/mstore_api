@@ -166,3 +166,6 @@ $RECYCLE.BIN/
 
 # Postgres data directory
 postgres_data/
+
+# yml files
+*.yml

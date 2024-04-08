@@ -6,6 +6,7 @@ const email = Joi.string().email();
 const password = Joi.string().min(5);
 const userCreatedAt = Joi.date().iso();
 
+
 // Esquema para crear un producto
 const createUserSchema = Joi.object({
   email: email.required(),
@@ -23,5 +24,6 @@ const updateUserSchema = Joi.object({
   email: email,
   password: password,
 });
+
 
 module.exports = { createUserSchema, getUserSchema, updateUserSchema };

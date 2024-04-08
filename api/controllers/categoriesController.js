@@ -1,6 +1,6 @@
 const CategoriesService = require('../services/categoriesService');
 
-// Instancia del productsService
+// Instancia del categoriesService
 const categoriesService = new CategoriesService();
 
 // Controlador de las categorias

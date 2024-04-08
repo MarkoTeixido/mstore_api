@@ -1,5 +1,7 @@
+// Importar el módulo dotenv y cargar las variables de entorno desde el archivo .env
 require('dotenv').config();
 
+// Objeto de configuración con los valores de las variables de entorno
 const config = {
 	env: process.env.NODE_ENV || 'dev',
 	port: process.env.PORT || 3000,
