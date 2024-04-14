@@ -9,6 +9,7 @@ const URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${
 
 // Instancia de Sequelize utilizando la URI de conexión
 const sequelize = new Sequelize(URI, {
+  dialectModule: require('pg'),
   dialect: 'postgres',
   logging: true
 });
